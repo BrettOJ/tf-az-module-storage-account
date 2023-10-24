@@ -35,7 +35,7 @@ module "azure_storage_account" {
   location                 = var.location
   account_tier             = var.access_tier
   account_replication_type = var.account_replication_type
-naming_convention_info = local.naming_convention_info
+  naming_convention_info = local.naming_convention_info
   account_kind = var.account_kind
 
   cross_tenant_replication_enabled  = var.cross_tenant_replication_enabled

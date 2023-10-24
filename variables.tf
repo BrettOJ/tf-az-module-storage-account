@@ -156,13 +156,13 @@ variable "tags" {
 
 variable "blob_properties" {
   type = object({
-    cors_rule = optional(object({
+    cors_rule = object({
       allowed_headers = list(string)
       allowed_methods = list(string)
       allowed_origins = list(string)
       exposed_headers = list(string)
       max_age_in_seconds = number
-    }))
+    })
     delete_retention_policy = object({
       days = number
     })
@@ -178,7 +178,29 @@ variable "blob_properties" {
       days = number
     })
   })
-  default = null
+  default = {
+    cors_rule = {
+      allowed_headers = null
+      allowed_methods = null
+      allowed_origins = null
+      exposed_headers = null
+      max_age_in_seconds = null
+    }
+    delete_retention_policy = {
+      days = null
+    }
+    restore_policy = {
+      days = null
+    }
+    versioning_enabled = null
+    change_feed_enabled = null
+    change_feed_retention_in_days = null
+    default_service_version = null
+    last_access_time_enabled = null
+    container_delete_retention_policy = {
+      days = null
+    }
+}
 }
 
 variable "custom_domain" {
@@ -268,7 +290,7 @@ variable "minute_metrics" {
 
 variable "network_rules" {
     type = object({
-        bypass = string
+        bypass = set(string)
         default_action = string
         ip_rules = list(string)
         virtual_network_subnet_ids = list(string)
@@ -306,34 +328,61 @@ variable "routing" {
 
 variable "queue_properties" {
     type = object({
-        cors_rule = optional(object({
+        cors_rule = object({
             allowed_headers = list(string)
             allowed_methods = list(string)
             allowed_origins = list(string)
             exposed_headers = list(string)
             max_age_in_seconds = number
-        }))
-        logging = optional(object({
+        })
+        logging = object({
             delete = bool
             read = bool
             version = string
             write = bool
             retention_policy_days = number
-        }))
-        minute_metrics = optional(object({
+        })
+        minute_metrics = object({
             enabled = bool
             version = string
             include_apis = bool
             retention_policy_days = number
-        }))
-        hour_metrics = optional(object({
+        })
+        hour_metrics = object({
             enabled = bool
             version = string
             include_apis = bool
             retention_policy_days = number
-        }))
+        })
     })
-    default = null
+    default = {
+        cors_rule = {
+            allowed_headers = null
+            allowed_methods = null
+            allowed_origins = null
+            exposed_headers = null
+            max_age_in_seconds = null
+        }
+        logging = {
+            delete = null
+            read = null
+            version = null
+            write = null
+            retention_policy_days = null
+        }
+        minute_metrics = {
+            enabled = null
+            version = null
+            include_apis = null
+            retention_policy_days = null
+        }
+        hour_metrics = {
+            enabled = null
+            version = null
+            include_apis = null
+            retention_policy_days = null
+        }
+    }
 }
 
 variable "sas_policy" {
@@ -354,25 +403,44 @@ variable "static_website" {
 
 variable "share_properties" {
     type = object({
-        cors_rule = optional(object({
+        cors_rule = object({
             allowed_headers = list(string)
             allowed_methods = list(string)
             allowed_origins = list(string)
             exposed_headers = list(string)
             max_age_in_seconds = number
-        }))
-        retention_policy = optional(object({
+        })
+        retention_policy = object({
             days = number
-        }))
-        smb = optional(object({
+        })
+        smb = object({
             versions = list(string)
             authentication_types = list(string)
             kerberos_ticket_encryption_type = list(string)
             channel_encryption_type = list(string)
             multichannel_enabled = bool
-        }))
+        })
     })
-    default = null
+    default = {
+     cors_rule = {
+            allowed_headers = null
+            allowed_methods = null
+            allowed_origins = null
+            exposed_headers = null
+            max_age_in_seconds = null
+        }
+      retention_policy = {
+            days = null
+        }
+      smb = {
+            versions = null
+            authentication_types = null
+            kerberos_ticket_encryption_type = null
+            channel_encryption_type = null
+            multichannel_enabled = null
+        }
+
+    }
 }
 
   

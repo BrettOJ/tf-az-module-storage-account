@@ -72,25 +72,6 @@ customer_managed_key {
     key_vault_key_id = var.customer_managed_key.key_vault_key_id
     user_assigned_identity_id = var.customer_managed_key.user_assigned_identity_id
     }
-  
-delete_retention_policy {
-        days = var.delete_retention_policy.days
-    }
-
-restore_policy {
-        days = var.restore_policy.days
-    }
-
-container_delete_retention_policy {
-        days = var.container_delete_retention_policy.days
-    }
-
-hours_metrics {
-        enabled = var.hours_metrics.enabled
-        version = var.hours_metrics.version
-        include_apis = var.hours_metrics.include_apis
-        retention_policy_days = var.hours_metrics.retention_policy_days
-}
 
 identity {
         type = var.identity.type
@@ -103,20 +84,8 @@ immutability_policy {
         period_since_creation_in_days = var.immutability_policy.period_since_creation_in_days
     }
 
-logging {
-        delete = var.logging.delete
-        read = var.logging.read
-        version = var.logging.version
-        write = var.logging.write
-        retention_policy_days = var.logging.retention_policy_days
-    }
 
-minute_metrics {
-        enabled = var.minute_metrics.enabled
-        version = var.minute_metrics.version
-        include_apis = var.minute_metrics.include_apis
-        retention_policy_days = var.minute_metrics.retention_policy_days
-    }
+
 
 network_rules {
         bypass = var.network_rules.bypass
@@ -147,7 +116,7 @@ routing {
         choice = var.routing.choice
     }
 
-dynammin "queue_properties" {
+dynamic "queue_properties" {
     for_each = var.queue_properties != null ? [var.queue_properties] : []
     content {
         dynamic "cors_rule" {
@@ -159,9 +128,8 @@ dynammin "queue_properties" {
             exposed_headers =   var.queue_properties.cors_rule.exposed_headers
             max_age_in_seconds = var.queue_properties.cors_rule.max_age_in_seconds
             }
-        }
-        }
-        dynamic "logging"  {
+            }
+        dynamic "logging" {
         for_each = queue_properties.value.logging != null ? [queue_properties.value.logging] : []
             content  {
             delete = var.queue_properties.logging.delete
@@ -190,7 +158,7 @@ dynammin "queue_properties" {
         }
         }
     }
-
+}
 sas_policy {
         expiration_period = var.sas_policy.expiration_period
         expiration_action = var.sas_policy.expiration_action

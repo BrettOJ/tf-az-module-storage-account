@@ -8,6 +8,7 @@ variable "resource_group_name" {
 variable "location" {
   type = string
   description = "Specifies the supported Azure location where the resource exists"
+  default = "southeastasia"
 }   
 
 variable  "naming_convention_info" {

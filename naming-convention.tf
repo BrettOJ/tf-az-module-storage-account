@@ -1,6 +1,6 @@
 #storage account name
 module "sst_name" {
-  source      = "git::https://github.com/BrettOJ/tf-az-module-naming-convention?ref=main"
+  source      = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-naming-convention?ref=master"
   name_format = "res_type|project_code|env|zone|tier|name"
   naming_convention_info = {
     "${var.naming_convention_info.name}" = {
@@ -13,7 +13,7 @@ module "sst_name" {
 
 #storage account container name
 module "sst_cnt_name" {
- source      = "git::https://github.com/BrettOJ/tf-az-module-naming-convention?ref=main"
+ source      = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-naming-convention?ref=master"
   name_format = "res_type|-|project_code|-|env|zone|tier|-|name"
   naming_convention_info = {
     for key, value in var.containers :
@@ -24,3 +24,4 @@ module "sst_cnt_name" {
   }
   resource_type = "blob"
 }
+

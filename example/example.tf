@@ -11,12 +11,12 @@ locals {
   }
 
   naming_convention_info = {
-    name         = "eg"
-    project_code = "boj"
+    name         = "001"
+    project_code = "knj"
     env          = "dev"
     zone         = "z1"
-    agency_code  = "brettoj"
-    tier         = "web"
+    agency_code  = "konjur"
+    tier         = "dta"
   }
 
     solution_plan_map = {
@@ -39,8 +39,8 @@ module "resource_groups" {
 }
 
 module "log_analytics_workspace" {  
-  source =  "git::https://github.com/BrettOJ/tf-module-az-log-analytics?ref=main"
-  resource_group_name = module.resource_groups.rg_output.level0.name
+  source =  "git::https://github.com/BrettOJ/tf-az-module-log-analytics?ref=main"
+  resource_group_name = module.resource_groups.rg_output.1.name
   location       = var.location
   sku            = "PerGB2018"
   naming_convention_info = local.naming_convention_info
@@ -50,8 +50,8 @@ module "log_analytics_workspace" {
 
 
 module "l0_storage_account" {
-  source              = "git::https://github.com/BrettOJ/tf-module-az-storage-account?ref=main"
-  resource_group_name = module.resource_groups.rg_output.level0.name
+  source              = "git::https://github.com/BrettOJ/tf-az-module-storage-account?ref=main"
+  resource_group_name = module.resource_groups.rg_output.1.name
   location            = var.location
   kind                = "StorageV2"
   sku                 = "Standard_LRS"
@@ -73,7 +73,7 @@ module "l0_storage_account" {
     }
   }
     diag_object = {
-    log_analytics_workspace_id = module.merlion_law.loga_output.id
+    log_analytics_workspace_id = module.log_analytics_workspace.loga_output.id
     log = [
       ["StorageDelete", true, true, 80],
     ]

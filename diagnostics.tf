@@ -45,7 +45,7 @@ locals {
 }
 
 module "diagnostics" {
-  source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+  source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
   log_analytics_workspace_id = var.diag_object == null || var.diag_object == {} ? "" : var.diag_object.log_analytics_workspace_id
   diag_object                = local.diag_object
@@ -56,7 +56,7 @@ module "diagnostics" {
 }
 
 module "blob_diagnostics" {
-  source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+  source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
   log_analytics_workspace_id = var.blob_diag_object == null || var.blob_diag_object == {} ? "" : var.blob_diag_object.log_analytics_workspace_id
   diag_object                = local.blob_diag_object
@@ -67,7 +67,7 @@ module "blob_diagnostics" {
 }
 
 module "que_diagnostics" {
-  source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+  source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
   log_analytics_workspace_id = var.que_diag_object == null || var.que_diag_object == {} ? "" : var.que_diag_object.log_analytics_workspace_id
   diag_object                = local.que_diag_object
@@ -78,7 +78,7 @@ module "que_diagnostics" {
 }
 
 module "file_diagnostics" {
- source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+ source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
   log_analytics_workspace_id = var.file_diag_object == null || var.file_diag_object == {} ? "" : var.file_diag_object.log_analytics_workspace_id
   diag_object                = local.file_diag_object
@@ -89,7 +89,7 @@ module "file_diagnostics" {
 }
 
 module "tbl_diagnostics" {
-  source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+  source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
   log_analytics_workspace_id = var.table_diag_object == null || var.table_diag_object == {} ? "" : var.table_diag_object.log_analytics_workspace_id
   diag_object                = local.table_diag_object
@@ -100,7 +100,7 @@ module "tbl_diagnostics" {
 }
 
 # module "diagnostics_container" {
-#   source = "git::https://dev.azure.com/Brett-OJ/MerlionOptimised/_git/tf-module-az-diagnostic-settings?ref=master"
+#   source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
 
 #   log_analytics_workspace_id      = var.diag_object.log_analytics_workspace_id
 #   diag_object                     = local.cnt_diag_object

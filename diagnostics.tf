@@ -2,35 +2,35 @@ locals {
   diag_object = var.diag_object == null ? null : {
     "${var.naming_convention_info.name}" = {
       resource_id = ["${azurerm_storage_account.sst_obj.id}/blobServices/default"]
-      log         = var.diag_object.log
+      enabled_log         = var.diag_object.enabled_log
       metric      = var.diag_object.metric
     }
   }
   blob_diag_object = var.blob_diag_object == null ? null : {
     "${var.naming_convention_info.name}" = {
       resource_id = ["${azurerm_storage_account.sst_obj.id}/blobServices/default"]
-      log         = var.blob_diag_object.log
+      enabled_log         = var.blob_diag_object.enabled_log
       metric      = var.blob_diag_object.metric
     }
   }
   que_diag_object = var.que_diag_object == null ? null : {
     "${var.naming_convention_info.name}" = {
       resource_id = ["${azurerm_storage_account.sst_obj.id}/queueServices/default"]
-      log         = var.blob_diag_object.log
+      enabled_log         = var.blob_diag_object.enabled_log
       metric      = var.blob_diag_object.metric
     }
   }
   table_diag_object = var.table_diag_object == null ? null : {
     "${var.naming_convention_info.name}" = {
       resource_id = ["${azurerm_storage_account.sst_obj.id}/tableServices/default"]
-      log         = var.blob_diag_object.log
+      enabled_log         = var.blob_diag_object.enabled_log
       metric      = var.blob_diag_object.metric
     }
   }
   file_diag_object = var.table_diag_object == null ? null : {
     "${var.naming_convention_info.name}" = {
       resource_id = ["${azurerm_storage_account.sst_obj.id}/fileServices/default"]
-      log         = var.blob_diag_object.log
+      enabled_log         = var.blob_diag_object.enabled_log
       metric      = var.blob_diag_object.metric
     }
   }
@@ -38,7 +38,7 @@ locals {
   #   for key, value in var.containers :
   #   "${key}" => {
   #     resource_id = [azurerm_storage_container.ss_cnt_obj[key].id]
-  #     log         = var.diag_object.log
+  #     enabled_log         = var.diag_object.enabled_log
   #     metric      = var.diag_object.metric
   #   }
   # }

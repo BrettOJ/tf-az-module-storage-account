@@ -55,7 +55,7 @@ variable "diag_object" {
   default     = null
   type = object({
     log_analytics_workspace_id = string
-    log                        = list(tuple([string, bool, bool, number]))
+    enabled_log                        = list(tuple([string, bool, bool, number]))
     metric                     = list(tuple([string, bool, bool, number]))
   })
 }
@@ -65,7 +65,7 @@ variable "blob_diag_object" {
   default     = null
   type = object({
     log_analytics_workspace_id = string
-    log                        = list(tuple([string, bool, bool, number]))
+    enabled_log                        = list(tuple([string, bool, bool, number]))
     metric                     = list(tuple([string, bool, bool, number]))
   })
 }
@@ -75,7 +75,7 @@ variable "que_diag_object" {
   default     = null
   type = object({
     log_analytics_workspace_id = string
-    log                        = list(tuple([string, bool, bool, number]))
+    enabled_log                        = list(tuple([string, bool, bool, number]))
     metric                     = list(tuple([string, bool, bool, number]))
   })
 }
@@ -85,7 +85,7 @@ variable "table_diag_object" {
   default     = null
   type = object({
     log_analytics_workspace_id = string
-    log                        = list(tuple([string, bool, bool, number]))
+    enabled_log                        = list(tuple([string, bool, bool, number]))
     metric                     = list(tuple([string, bool, bool, number]))
   })
 }
@@ -95,7 +95,7 @@ variable "file_diag_object" {
   default     = null
   type = object({
     log_analytics_workspace_id = string
-    log                        = list(tuple([string, bool, bool, number]))
+    enabled_log                        = list(tuple([string, bool, bool, number]))
     metric                     = list(tuple([string, bool, bool, number]))
   })
 }
@@ -118,7 +118,7 @@ variable "tags" {
 }
 
 variable "dependencies" {
-  type        = list
+  type        = list(string)
   description = "List of dependecies modules or resources"
   default     = null
 }

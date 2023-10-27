@@ -74,7 +74,7 @@ module "l0_storage_account" {
   }
     diag_object = {
     log_analytics_workspace_id = module.log_analytics_workspace.loga_output.id
-    log = [
+    enabled_log = [
       ["StorageDelete", true, true, 80],
     ]
     metric = [

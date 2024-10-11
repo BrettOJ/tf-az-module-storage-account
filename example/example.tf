@@ -57,7 +57,7 @@ module "l0_storage_account" {
   sku                 = "Standard_LRS"
   access_tier         = "Hot"
   assign_identity     = "SystemAssigned"
-  #public_network_access_enabled = var.public_network_access_enabled
+  https_traffic_only_enabled = true
   containers = {
     lvl0 = {
       name        = "lvl0"

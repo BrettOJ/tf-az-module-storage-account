@@ -11,10 +11,10 @@ resource "azurerm_storage_account" "sst_obj" {
   account_tier              = local.account_tier
   account_replication_type  = local.account_replication_type
   access_tier               = var.access_tier
-  enable_https_traffic_only = var.https_only
+  https_traffic_only_enabled  = var.https_only 
   tags                      = module.sst_name.naming_convention_output[var.naming_convention_info.name].tags.0
   min_tls_version           = var.tls_version
-  #public_network_access_enabled   = var.public_network_access_enabled 
+  
   dynamic "static_website" {
     for_each = var.static_website == null ? [] : [1]
     content {

@@ -34,14 +34,7 @@ locals {
       metric      = var.blob_diag_object.metric
     }
   }
-  # cnt_diag_object = {
-  #   for key, value in var.containers :
-  #   "${key}" => {
-  #     resource_id = [azurerm_storage_container.ss_cnt_obj[key].id]
-  #     enabled_log         = var.diag_object.enabled_log
-  #     metric      = var.diag_object.metric
-  #   }
-  # }
+
 }
 
 module "diagnostics" {
@@ -99,13 +92,3 @@ module "tbl_diagnostics" {
   tags                       = var.tags
 }
 
-# module "diagnostics_container" {
-#   source = "git::https://github.com/BrettOJ/tf-az-module-diagnostics-settings?ref=main"
-
-#   log_analytics_workspace_id      = var.diag_object.log_analytics_workspace_id
-#   diag_object                     = local.cnt_diag_object
-#   naming_convention_info          = var.naming_convention_info
-#   dependencies                    = [azurerm_storage_account.sst_obj]
-#   resource_type                   = "cntdiag" 
-#   tags                            = var.tags
-# }

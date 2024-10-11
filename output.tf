@@ -3,10 +3,6 @@ output "sst_output" {
   description = "Storage account object"
 }
 
-# output "blob_diag" {
-#   value = null_resource.blob_diagnostics_setting
-#   description = "Blob diagnostics settings object"
-# }
 
 output "cnt_output" {
   value = {

@@ -11,7 +11,7 @@ resource "azurerm_storage_account" "sst_obj" {
   account_tier              = local.account_tier
   account_replication_type  = local.account_replication_type
   access_tier               = var.access_tier
-  https_traffic_only_enabled  = var.https_only 
+  https_traffic_only_enabled  = var.https_traffic_only_enabled
   tags                      = module.sst_name.naming_convention_output[var.naming_convention_info.name].tags.0
   min_tls_version           = var.tls_version
   

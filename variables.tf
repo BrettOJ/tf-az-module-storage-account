@@ -28,7 +28,7 @@ variable "access_tier" {
   description = "The access tier of the storage account."
 }
 
-variable "https_only" {
+variable "https_traffic_only_enabled" {
   type        = bool
   default     = true
   description = "Set to `true` to only allow HTTPS traffic, or `false` to disable it."

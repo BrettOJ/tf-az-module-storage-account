@@ -56,10 +56,11 @@ resource "azurerm_storage_account" "sst_obj" {
 
 resource "azurerm_storage_container" "ss_cnt_obj" {
   for_each              = var.containers
-  name                  = coalesce(each.value.name, module.sst_cnt_name.naming_convention_output[each.key].names.0)
+  name                  = each.value.key #coalesce(each.value.name, module.sst_cnt_name.naming_convention_output[each.key].names.0)
   storage_account_name  = azurerm_storage_account.sst_obj.name
   container_access_type = each.value.access_type
 }
+
 
 resource "azurerm_advanced_threat_protection" "threat_obj" {
   target_resource_id = azurerm_storage_account.sst_obj.id
